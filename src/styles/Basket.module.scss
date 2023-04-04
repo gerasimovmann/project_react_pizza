@@ -1,0 +1,155 @@
+@import './config.scss';
+
+.basket {
+  padding: 0 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+  max-width: 821px;
+  margin: 0 auto;
+
+  .titleBlock {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .title {
+      display: flex;
+      gap: 17px;
+      align-items: center;
+
+      h2 {
+        font-family: 'SemiBold';
+        font-weight: 700;
+        font-size: 32px;
+        line-height: 39px;
+        letter-spacing: 0.01em;
+      }
+
+      svg {
+        font-size: 32px;
+      }
+    }
+
+    .clearButton {
+      color: lightGray;
+      font-style: normal;
+      font-family: 'Regular';
+      font-size: 16px;
+      line-height: 19px;
+    }
+  }
+
+  .basketElements {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    .basketElement {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 30px;
+      border-top: 1px solid #f4f4f4;
+      margin-bottom: 25px;
+      .titleImg {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        img {
+          width: 80px;
+          height: 80px;
+          margin-right: 0px;
+        }
+      }
+
+      .counter {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        font-size: 22px;
+        font-family: 'SemiBold';
+        .counterButton {
+          width: 32px;
+          height: 32px;
+          border-radius: 100%;
+          border: 1px solid $orange;
+          color: $orange;
+        }
+      }
+
+      .price {
+        font-size: 22px;
+        font-family: 'SemiBold';
+      }
+
+      .deleteBasket {
+        width: 32px;
+        height: 32px;
+        border-radius: 100%;
+        border: 1px solid $orange;
+        color: $orange;
+      }
+    }
+
+    .counts {
+      display: flex;
+      justify-content: space-between;
+
+      .countAmount {
+        font-size: 22px;
+        span {
+          font-family: 'SemiBold';
+        }
+      }
+
+      .countSum {
+        font-size: 22px;
+
+        span {
+          font-family: 'SemiBold';
+          color: $orange;
+        }
+      }
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  .basketEmpty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    max-width: 547px;
+    width: 100%;
+    margin: 0 auto;
+
+    .title {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+
+      h2 {
+        font-size: $textSections;
+      }
+
+      span {
+        color: $gray;
+        font-size: 18px;
+        line-height: 145.4%;
+        text-align: center;
+        letter-spacing: 0.01em;
+      }
+    }
+    img {
+      max-width: 300px;
+      width: 100%;
+    }
+  }
+}

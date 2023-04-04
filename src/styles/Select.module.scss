@@ -1,0 +1,62 @@
+@import '../styles/config.scss';
+
+.customSelectContainer {
+  position: relative;
+  border-radius: 4px;
+  z-index: 1;
+  cursor: pointer;
+
+  .selectedOption {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    text-align: center;
+
+    span {
+      width: 110px;
+      color: $orange;
+      text-decoration: underline dashed $orange;
+      text-underline-offset: 5px;
+      font-weight: 400;
+      font-family: 'Regular';
+      font-size: 14px;
+      line-height: 17px;
+    }
+
+    svg {
+      transition: 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+
+    .openSvg {
+      transform: rotate(180deg);
+    }
+  }
+
+  .optionsList {
+    position: absolute;
+    top: 35px;
+    right: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    background: #ffff;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.06), 0px 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    font-weight: 400;
+    font-family: 'Medium';
+    font-size: 14px;
+    line-height: 17px;
+
+    li {
+      padding: 10px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      cursor: pointer;
+    }
+  }
+}
+
+.optionsList li:hover {
+  background-color: rgba(254, 95, 30, 0.05);
+  color: $orange;
+}

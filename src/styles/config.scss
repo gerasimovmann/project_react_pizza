@@ -1,0 +1,67 @@
+// colors
+:root {
+  --backgroundApp: #ffdf8c;
+  --backgroundWrapper: #ffff;
+  --white: #ffff;
+  //gray
+  --gray: #7b7b7b;
+  --lightGray: #b6b6b6;
+  --grayText: #7b7b7b;
+  --grayBackFilter: #f9f9f9;
+  --grayBackCard: #f3f3f3;
+  --grayBorder: #f6f6f6;
+  //black
+  --black: #2c2c2c;
+  --textBlack: #2c2c2c;
+  --buttonBlack: #282828;
+  //orange
+  --orange: #fe5f1e;
+  --textOrange: #fe5f1e;
+  --buttonOrange: #fe5f1e;
+
+  // sizes
+  //sizesFonts
+  --textStandart: 14px;
+  --textLogoH1: 24px;
+  --textLogoH2: 16px;
+  --textSections: 32px;
+  --textSectionsH4: 18px;
+  --textFilterCategory: 16px;
+  --textSort: 14px;
+  --textButton: 16px;
+  --textCartFilter: 14px;
+  --textPrice: 22px;
+
+  // blocks
+  --widthWrapper: 1100px;
+  --paddingApp: 45px;
+}
+
+//varsForApp
+$backgroundApp: var(--backgroundApp);
+$backgroundWrapper: var(--backgroundWrapper);
+$white: var(--white);
+$gray: var(--gray);
+$lightGray: var(--lightGray);
+$grayBorder: var(--grayBorder);
+$grayText: var(--grayText);
+$grayBackFilter: var(--grayBackFilter);
+$grayBackCard: var(--grayBackCard);
+$black: var(--black);
+$textBlack: var(--textBlack);
+$buttonBlack: var(--buttonBlack);
+$orange: var(--orange);
+$textOrange: var(--textOrange);
+$buttonOrange: var(--buttonOrange);
+$textStandart: var(--textStandart);
+$textLogoH1: var(--textLogoH1);
+$textLogoH2: var(--textLogoH2);
+$textSections: var(--textSections);
+$textSectionsH4: var(--textSectionsH4);
+$textFilterCategory: var(--textFilterCategory);
+$textSort: var(--textSort);
+$textButton: var(--textButton);
+$textCartFilter: var(--textCartFilter);
+$textPrice: var(--textPrice);
+$widthWrapper: var(--widthWrapper);
+$paddingApp: var(--paddingApp);

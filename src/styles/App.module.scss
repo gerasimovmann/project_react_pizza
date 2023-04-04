@@ -1,0 +1,318 @@
+@import './config.scss';
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(223deg);
+  }
+}
+
+@keyframes rotate2 {
+  0% {
+    transform: rotate(223deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes openSearch {
+  0% {
+    transform: translateX(900px);
+    background-color: transparent;
+  }
+
+  to {
+    transform: translateX(0px);
+    background-color: transparent;
+  }
+}
+
+@keyframes closeSearch {
+  0% {
+    transform: translateX(0px);
+    display: block;
+    background-color: transparent;
+  }
+
+  to {
+    transform: translateX(900px);
+    display: none;
+    background-color: transparent;
+  }
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  background: $backgroundWrapper;
+  max-width: $widthWrapper;
+  width: 100%;
+  box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.03);
+  border-radius: 10px;
+  padding: 45px 0px;
+  margin: 0 auto;
+  gap: 30px;
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid $grayBorder;
+    width: 100%;
+    padding: 0px 50px 30px 50px;
+    flex-wrap: wrap;
+    gap: 30px;
+
+    .searchBlock {
+      display: flex;
+      width: 100%;
+
+      input {
+        width: 100%;
+        padding: 15px 20px 15px 20px;
+        border-radius: 20px;
+        border: 1px solid $gray;
+        font-family: 'SemiBold';
+        font-size: 16px;
+        line-height: 19px;
+        outline: none;
+      }
+      input:focus {
+        border: 1px solid $orange;
+      }
+
+      input::placeholder {
+        color: rgb(183, 183, 183);
+      }
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 17px;
+
+      h1 {
+        font-size: 24px;
+        line-height: 29px;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        font-family: 'Bold';
+      }
+
+      span {
+        font-size: 16px;
+        line-height: 19px;
+        color: $grayText;
+      }
+    }
+
+    .headerButtons {
+      display: flex;
+      gap: 10px;
+
+      .searchButton {
+        width: 49px;
+        height: 49px;
+        display: flex;
+        border: 1px solid transparent;
+
+        color: $orange;
+        font-size: 28px;
+        border-radius: 100%;
+        transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+        svg {
+          animation: rotate2 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          transform: rotate(0deg);
+        }
+      }
+
+      .searchButton:hover {
+        border-bottom: 1px solid #ff9c73;
+      }
+
+      .searchButtonActive {
+        border-bottom: 1px solid $orange;
+
+        svg {
+          animation: rotate 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          transform: rotate(223deg);
+        }
+      }
+
+      .buttonBusket {
+        button {
+          border: none;
+          position: relative;
+          padding: 15px 23px;
+          background: #fe5f1e;
+          border-radius: 30px;
+          display: flex;
+          gap: 10px;
+          justify-content: center;
+          align-items: center;
+          font-family: 'semiBold';
+          font-size: 16px;
+          line-height: 19px;
+          color: $white;
+
+          .buttonLine::before {
+            position: absolute;
+            content: '';
+            width: 1px;
+            height: 20px;
+            transform: translateY(-50%);
+            top: 50%;
+
+            background-color: rgba(255, 255, 255, 0.25);
+          }
+        }
+      }
+    }
+  }
+
+  main {
+    padding: 0 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    .filters {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 35px;
+
+      .categories {
+        display: flex;
+        gap: 15px;
+        justify-content: start;
+        align-items: center;
+        flex-grow: 1;
+        overflow-x: auto;
+      }
+
+      .sorts {
+        display: flex;
+        gap: 10px;
+        font-size: 14px;
+        font-family: 'SemiBold';
+        font-weight: 700;
+        line-height: 17px;
+        letter-spacing: 0.03em;
+      }
+    }
+
+    .items {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      h2 {
+        font-family: 'SemiBold';
+        font-weight: 700;
+        font-size: 32px;
+        line-height: 39px;
+        letter-spacing: 0.01em;
+      }
+
+      .cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 40px 0px;
+
+        .card {
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+          align-items: center;
+          justify-content: center;
+          margin: 0px 15px;
+          img {
+            max-width: 260px;
+          }
+
+          .cardTitle {
+            font-family: 'Bold';
+            font-size: 20px;
+            line-height: 24px;
+            text-align: center;
+            letter-spacing: 0.01em;
+          }
+
+          .optionsCard {
+            display: flex;
+            flex-direction: column;
+            background: $grayBackCard;
+            border-radius: 10px;
+            width: 100%;
+            padding: 5px;
+            gap: 10px;
+
+            .types {
+              display: flex;
+              gap: 5px;
+              align-items: center;
+
+              button {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                text-align: center;
+                padding: 5px;
+                font-size: 14px;
+              }
+
+              .buttonActive {
+                background: #ffffff;
+                box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.04);
+                border-radius: 5px;
+              }
+            }
+
+            .sizes {
+              display: flex;
+              gap: 5px;
+              justify-content: center;
+              align-items: center;
+
+              button {
+                width: 100%;
+                font-size: 14px;
+                display: flex;
+                justify-content: center;
+                text-align: center;
+                padding: 5px;
+              }
+
+              .buttonActive {
+                background: #ffffff;
+                box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.04);
+                border-radius: 5px;
+              }
+            }
+          }
+
+          .priceButton {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+
+            .price {
+              font-family: 'SemiBold';
+              font-size: 19px;
+              line-height: 27px;
+              letter-spacing: 0.015em;
+            }
+          }
+        }
+      }
+    }
+  }
+}

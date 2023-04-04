@@ -1,0 +1,64 @@
+@import '../styles/config.scss';
+
+.butClassic {
+  padding: 14px 34px;
+  background: $buttonOrange;
+  border-radius: 30px;
+  color: white;
+}
+
+.butFilter {
+  border-radius: 30px;
+  padding: 14px 34px;
+  background: $grayBackFilter;
+  transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.butFilter:hover {
+  background: #cccccc;
+}
+
+.butFilterActive {
+  background: $buttonBlack;
+  color: white;
+}
+
+.butFilterActive:hover {
+  background: $buttonBlack;
+}
+
+.butBack {
+  background: white;
+  padding: 14px 34px;
+  border: 1px solid #d3d3d3;
+  border-radius: 30px;
+  color: #cacaca;
+}
+
+.butCard {
+  padding: 10px 25px;
+  font-size: 14px;
+  color: $buttonOrange;
+  background: transparent;
+  border: 1px solid $buttonOrange;
+  border-radius: 30px;
+  max-height: 41px;
+  height: 100%;
+  transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+
+  .counter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    width: 22px;
+    height: 22px;
+    border-radius: 100%;
+    background: $buttonOrange;
+    color: white;
+  }
+}
+.butCard:hover {
+  background-color: $buttonOrange;
+  color: white;
+}
