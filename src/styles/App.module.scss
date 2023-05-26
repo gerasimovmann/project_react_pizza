@@ -225,6 +225,12 @@
         justify-content: space-between;
         gap: 40px 0px;
 
+        .fetchError {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+        }
+
         .card {
           display: flex;
           flex-direction: column;

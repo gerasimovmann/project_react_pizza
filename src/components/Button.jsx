@@ -4,13 +4,12 @@ import { AiOutlinePlus } from 'react-icons/ai'
 import { IoIosArrowBack } from 'react-icons/io'
 
 function Button({ children, type, onClick, counter, active }) {
-  // types = ['card', 'classic', 'back', 'filter']
-
   //   <Button type={'classic'}>classic</Button>
   //   <Button type={'filter'}>filter</Button>
   //   <Button type={'back'}>back</Button>
   //   <Button type={'card'}>card</Button>
   const [typeBut, setTypeBut] = useState(type)
+
   return (
     <>
       {typeBut === 'card' && (

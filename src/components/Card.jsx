@@ -1,14 +1,43 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
+import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import styles from '../styles/App.module.scss'
 import Button from './Button'
 
-const Card = ({ card, onTypePizza, onSizePizza }) => {
+const Card = ({ card, pizzaBasket }) => {
+  const getCount = (basket) => {
+    if (basket.length) {
+      for (const el of basket) {
+        if (el.id === card.id) {
+          setCounterBasket((prev) => prev + el.amount)
+        }
+      }
+    }
+  }
+
   const [countBasket, setCounterBasket] = useState(0)
   const [typePizza, setTypePizza] = useState(0)
   const [sizePizza, setSizePizza] = useState(0)
+  const [extraPrice, setExtraPrice] = useState({ type: 0, size: 0 })
+  const cardPrice = card.price + extraPrice.type + extraPrice.size
+  const basketItems = useSelector((state) => state.basketSlice.basketItems)
 
-  onTypePizza(typePizza) // отдать на вверх значение type пиццы
-  onSizePizza(sizePizza) // отдать на вверх значение size пиццы
+  const firstMounted = useRef(true)
+
+  const interfacePizza = {
+    id: card.id,
+    name: card.title,
+    typePizza,
+    sizePizza,
+    price: cardPrice,
+    amount: 1,
+    img: card.img,
+  }
+
+  useEffect(() => {
+    getCount(basketItems)
+    firstMounted.current = false
+  }, [])
 
   return (
     <div className={styles.card}>
@@ -17,13 +46,16 @@ const Card = ({ card, onTypePizza, onSizePizza }) => {
       <div className={styles.optionsCard}>
         <div className={styles.types}>
           {card.type.map((el, id) => {
-            console.log(`id: ${id}`)
-
             return el === 0 ? (
               <button
                 key={id}
                 className={typePizza === 0 ? styles.buttonActive : ''}
-                onClick={() => setTypePizza(0)}
+                onClick={() => {
+                  setTypePizza(0)
+                  setExtraPrice((prev) => {
+                    return { ...prev, type: 0 }
+                  })
+                }}
               >
                 Тонкое
               </button>
@@ -31,7 +63,12 @@ const Card = ({ card, onTypePizza, onSizePizza }) => {
               <button
                 key={id}
                 className={typePizza === 1 ? styles.buttonActive : ''}
-                onClick={() => setTypePizza(1)}
+                onClick={() => {
+                  setTypePizza(1)
+                  setExtraPrice((prev) => {
+                    return { ...prev, type: 50 }
+                  })
+                }}
               >
                 Традиционное
               </button>
@@ -40,14 +77,18 @@ const Card = ({ card, onTypePizza, onSizePizza }) => {
         </div>
 
         <div className={styles.sizes}>
-          {card.size.map((el, id) => {
-            console.log(`id: ${id}`)
+          {card.size.map((el, _id) => {
             return (
               (el === 0 && (
                 <button
                   key={el}
                   className={sizePizza === 0 ? styles.buttonActive : ''}
-                  onClick={() => setSizePizza(0)}
+                  onClick={() => {
+                    setSizePizza(0)
+                    setExtraPrice((prev) => {
+                      return { ...prev, size: 0 }
+                    })
+                  }}
                 >
                   26 см.
                 </button>
@@ -56,7 +97,12 @@ const Card = ({ card, onTypePizza, onSizePizza }) => {
                 <button
                   key={el}
                   className={sizePizza === 1 ? styles.buttonActive : ''}
-                  onClick={() => setSizePizza(1)}
+                  onClick={() => {
+                    setSizePizza(1)
+                    setExtraPrice((prev) => {
+                      return { ...prev, size: 150 }
+                    })
+                  }}
                 >
                   30 см.
                 </button>
@@ -65,7 +111,12 @@ const Card = ({ card, onTypePizza, onSizePizza }) => {
                 <button
                   key={el}
                   className={sizePizza === 2 ? styles.buttonActive : ''}
-                  onClick={() => setSizePizza(2)}
+                  onClick={() => {
+                    setSizePizza(2)
+                    setExtraPrice((prev) => {
+                      return { ...prev, size: 300 }
+                    })
+                  }}
                 >
                   40 см.
                 </button>
@@ -76,11 +127,14 @@ const Card = ({ card, onTypePizza, onSizePizza }) => {
       </div>
       <div className={styles.priceButton}>
         <div className={styles.price}>
-          от {card.price}
+          {typePizza !== 0 || sizePizza !== 0 ? '' : 'от'} {cardPrice}
           <span> ₽</span>
         </div>
         <Button
-          onClick={() => setCounterBasket((prev) => prev + 1)}
+          onClick={() => {
+            setCounterBasket((prev) => prev + 1)
+            pizzaBasket(interfacePizza)
+          }}
           counter={countBasket}
           type={'card'}
         >

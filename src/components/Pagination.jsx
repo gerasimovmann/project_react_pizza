@@ -1,11 +1,18 @@
 import React from 'react'
-import { useState, useContext } from 'react'
-import { PizzasContext } from '../context/PizzasContext'
 import styles from '../styles/Pagination.module.scss'
+import { useSelector, useDispatch } from 'react-redux'
+import {
+  setCurrentPage,
+  incrementCurrentPage,
+  decrementCurrentPage,
+} from '../redux/slices/paginationSlice'
 
 function Pagination() {
-  const { allData, setCurrentPage, limitPage, currentPage } =
-    useContext(PizzasContext)
+  const dispatch = useDispatch()
+  const currentPage = useSelector((state) => state.paginationSlice.currentPage)
+  const limitItem = useSelector((state) => state.paginationSlice.limitItem)
+  const allData = useSelector((state) => state.pizzasSlice.allData)
+
   const dataCount = allData?.length
   let count
   const pageCount = (countItems, limitItems) => {
@@ -23,18 +30,18 @@ function Pagination() {
       {currentPage <= 1 ? null : (
         <li
           onClick={() => {
-            setCurrentPage((prev) => prev - 1)
+            dispatch(decrementCurrentPage())
             handleScrollToTop()
           }}
         >{`<`}</li>
       )}
 
       {!!dataCount &&
-        pageCount(dataCount, limitPage).map((el, id) => (
+        pageCount(dataCount, limitItem).map((_el, id) => (
           <li
             className={currentPage === id + 1 ? styles.activePag : null}
             onClick={() => {
-              setCurrentPage(id + 1)
+              dispatch(setCurrentPage(id + 1))
               handleScrollToTop()
             }}
             key={id}
@@ -45,7 +52,7 @@ function Pagination() {
       {currentPage >= count ? null : (
         <li
           onClick={() => {
-            setCurrentPage((prev) => prev + 1)
+            dispatch(incrementCurrentPage())
             handleScrollToTop()
           }}
         >{`>`}</li>

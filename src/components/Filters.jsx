@@ -4,13 +4,13 @@ import Button from './Button'
 import styles from '../styles/App.module.scss'
 import sorts from '../data/sorts'
 import categorys from '../data/categorys'
-import MainContext from '../context/MainContext'
-import { PizzasContext } from '../context/PizzasContext'
+import { useSelector, useDispatch } from 'react-redux'
+import { setCategoryId, setSort } from '../redux/slices/filterSlice'
+import { setCurrentPage } from '../redux/slices/paginationSlice'
 
 function Filters() {
-  const { category, setCategory, setSort, sort } = useContext(MainContext)
-  const { isCategory, setIsCategory, isSorts, setIsSorts, setCurrentPage } =
-    useContext(PizzasContext)
+  const dispatch = useDispatch()
+  const isCategory = useSelector((state) => state.filterSlice.isCategory)
 
   return (
     <section className={styles.filters}>
@@ -21,8 +21,8 @@ function Filters() {
             key={id}
             type={'filter'}
             onClick={() => {
-              setIsCategory(el.type)
-              setCurrentPage(1)
+              dispatch(setCategoryId(el.type))
+              dispatch(setCurrentPage(1))
             }}
           >
             {el.text}
@@ -33,7 +33,7 @@ function Filters() {
         Сортировка по:{' '}
         <Select
           options={sorts}
-          onOptionSelect={(option) => setIsSorts(option)}
+          onOptionSelect={(option) => dispatch(setSort(option))}
         ></Select>
       </div>
     </section>
